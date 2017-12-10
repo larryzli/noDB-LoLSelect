@@ -26,9 +26,9 @@ export default class ChampSelect extends Component {
     render() {
         return (
             <div className="champ-select">
-                <Team />
+                <Team color="red-team" />
                 <ChampList champsLeft={this.state.champions} />
-                <Team />
+                <Team color="blue-team" />
             </div>
         );
     }

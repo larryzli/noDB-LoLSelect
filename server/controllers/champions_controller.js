@@ -116,35 +116,43 @@ let champions = [
 ];
 
 const getAllChamps = (req, res, next) => {
-    // if (champions.length !== 139) {
-    //     axios
-    //         .get(
-    //             `https://api.pandascore.co/lol/champions?page=1&per_page=100&token=${
-    //                 APIkey
-    //             }`
-    //         )
-    //         .then(result => {
-    //             champions = result.data;
-    //         })
-    //         .then(
-    //             axios
-    //                 .get(
-    //                     `https://api.pandascore.co/lol/champions?page=2&per_page=100&token=${
-    //                         APIkey
-    //                     }`
-    //                 )
-    //                 .then(result => {
-    //                     champions = champions.concat(result.data);
-    //                     return res.status(200).json(champions);
-    //                 })
-    //         );
-    // } else {
-    //     console.log("else");
-    //     return res.status(200).json(champions);
-    // }
-    return res.status(200).json(champions);
+    if (champions.length !== 139) {
+        axios
+            .get(
+                `https://api.pandascore.co/lol/champions?page=1&per_page=100&token=${
+                    APIkey
+                }`
+            )
+            .then(result => {
+                champions = result.data;
+                return axios.get(
+                    `https://api.pandascore.co/lol/champions?page=2&per_page=100&token=${
+                        APIkey
+                    }`
+                );
+            })
+            .then(result => {
+                champions = champions.concat(result.data);
+                return res.status(200).json(champions);
+            });
+    } else {
+        console.log("else");
+        return res.status(200).json(champions);
+    }
+    // return res.status(200).json(champions);
+};
+
+const pickChamp = (req, res, next) => {
+    const champID = req.params.id;
+    const index = champions.findIndex(champ => champ.id === champID);
+
+    const pickedChampion = champions[index];
+    champions.splice(index, 1);
+
+    return res.status(200).json(pickedChampion);
 };
 
 module.exports = {
-    getAllChamps
+    getAllChamps,
+    pickChamp
 };

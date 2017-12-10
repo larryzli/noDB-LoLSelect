@@ -13,7 +13,6 @@ export default class ChampList extends Component {
         let champsLeft = this.props.champsLeft.map(val => (
             <Champion key={val.id} name={val.name} picURL={val.image_url} />
         ));
-        // console.log(champsLeft);
         return (
             <div className="champlist-container">
                 <p>CHAMPIONS</p>

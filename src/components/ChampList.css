@@ -9,6 +9,7 @@
     box-sizing: border-box;
     /* justify-content: center; */
     align-content: flex-start;
+    overflow: scroll;
 }
 
 .champlist-container {

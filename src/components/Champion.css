@@ -2,10 +2,19 @@
     box-sizing: border-box;
     background-color: black;
     height: 140px;
+    padding-top: 5px;
 }
 
 .champion p {
     margin: 0;
     color: white;
     text-align: center;
+}
+.champion img {
+    width: 100px;
+    height: 100px;
+}
+
+.champion p:hover {
+    color: teal;
 }

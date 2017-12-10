@@ -6,9 +6,17 @@
     flex-direction: column;
 }
 
-.red-header {
+.red-team {
     height: 50px;
     background-color: #ff6868;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blue-team {
+    height: 50px;
+    background-color: #2860fc;
     display: flex;
     align-items: center;
     justify-content: center;
