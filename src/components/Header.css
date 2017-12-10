@@ -1,0 +1,12 @@
+.header {
+    background-color: grey;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+    color: white;
+    font-size: 2em;
+    letter-spacing: 0.05em;
+}

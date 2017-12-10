@@ -1,0 +1,21 @@
+.team {
+    background-color: #cccccc;
+    height: 100%;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.red-header {
+    height: 50px;
+    background-color: #ff6868;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-header p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+}
