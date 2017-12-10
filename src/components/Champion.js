@@ -1,10 +1,11 @@
 import React from "react";
-// import "./Champion.css";
+import "./Champion.css";
 
-const Champion = () => {
+const Champion = ({ name, picURL }) => {
     return (
         <div className="champion">
-            <span>Champion Name</span>
+            <p>{name}</p>
+            <img src={picURL} alt={`${name} champion pic`} />
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Champion from "./Champion";
+import "./ChampList.css";
 
 export default class ChampList extends Component {
     constructor(props) {
@@ -9,11 +10,14 @@ export default class ChampList extends Component {
     }
 
     render() {
-        let champsLeft = this.state.props;
+        let champsLeft = this.props.champsLeft.map(val => (
+            <Champion key={val.id} name={val.name} picURL={val.image_url} />
+        ));
+        // console.log(champsLeft);
         return (
-            <div>
-                <p>Champ List</p>
-                <Champion />
+            <div className="champlist-container">
+                <p>CHAMPIONS</p>
+                <div className="champlist">{champsLeft}</div>
             </div>
         );
     }

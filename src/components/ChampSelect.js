@@ -16,7 +16,7 @@ export default class ChampSelect extends Component {
         axios
             .get("/api/champions/")
             .then(result => {
-                console.log(result.data);
+                // console.log(result.data);
                 return this.setState({
                     champions: result.data
                 });

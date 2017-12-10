@@ -1,0 +1,11 @@
+.champion {
+    box-sizing: border-box;
+    background-color: black;
+    height: 140px;
+}
+
+.champion p {
+    margin: 0;
+    color: white;
+    text-align: center;
+}
