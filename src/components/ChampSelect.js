@@ -18,6 +18,7 @@ export default class ChampSelect extends Component {
         this.champAddBlue = this.champAddBlue.bind(this);
         this.champRemoveRed = this.champRemoveRed.bind(this);
         this.champRemoveBlue = this.champRemoveBlue.bind(this);
+        this.resetTeams = this.resetTeams.bind(this);
     }
     champAddRed(champID) {
         if (this.state.redTeam.length < 5) {
@@ -78,22 +79,49 @@ export default class ChampSelect extends Component {
         });
     }
 
-    updateTeam(team) {}
+    resetTeams() {
+        console.log("RESET");
+        axios
+            .delete("/api/red_team/")
+            .then(result => {
+                this.setState({
+                    redTeam: result.data
+                });
+            })
+            .catch(console.log);
+        axios
+            .delete("/api/blue_team/")
+            .then(result => {
+                this.setState({
+                    blueTeam: result.data
+                });
+            })
+            .catch(console.log);
+    }
     render() {
+        const redTeamIDs = this.state.redTeam.map(champ => champ.id);
+        const blueTeamIDs = this.state.blueTeam.map(champ => champ.id);
+        const remainingChamps = this.state.champions.filter(champ => {
+            return (
+                redTeamIDs.indexOf(champ.id) === -1 &&
+                blueTeamIDs.indexOf(champ.id) === -1
+            );
+        });
         return (
             <div className="champ-select">
                 <Team
-                    color="red-team"
+                    color="red_team"
                     removeMember={this.champRemoveRed}
                     teamMembers={this.state.redTeam}
                 />
                 <ChampList
+                    resetTeams={this.resetTeams}
                     champAddRed={this.champAddRed}
                     champAddBlue={this.champAddBlue}
-                    champsLeft={this.state.champions}
+                    champsLeft={remainingChamps}
                 />
                 <Team
-                    color="blue-team"
+                    color="blue_team"
                     removeMember={this.champRemoveBlue}
                     teamMembers={this.state.blueTeam}
                 />

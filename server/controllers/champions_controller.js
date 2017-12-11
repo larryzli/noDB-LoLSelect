@@ -93,6 +93,16 @@ const removeBlueMember = (req, res, next) => {
     return res.status(200).json(blue_team);
 };
 
+const resetRed = (req, res, next) => {
+    red_team = [];
+    return res.status(200).json(red_team);
+};
+
+const resetBlue = (req, res, next) => {
+    blue_team = [];
+    return res.status(200).json(blue_team);
+};
+
 module.exports = {
     getAllChamps,
     getRedName,
@@ -104,5 +114,7 @@ module.exports = {
     addRedMember,
     addBlueMember,
     removeRedMember,
-    removeBlueMember
+    removeBlueMember,
+    resetRed,
+    resetBlue
 };

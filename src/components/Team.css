@@ -8,7 +8,7 @@
 .team-list {
     overflow: scroll;
 }
-.red-team {
+.red_team {
     height: 50px;
     background-color: #d63434;
     display: flex;
@@ -16,7 +16,7 @@
     justify-content: center;
 }
 
-.blue-team {
+.blue_team {
     height: 50px;
     background-color: #2860fc;
     display: flex;
@@ -30,11 +30,11 @@
     font-size: 20px;
 }
 
-.red-team .team-header {
+.red_team .team-header {
     color: rgb(255, 211, 211);
 }
 
-.blue-team .team-header {
+.blue_team .team-header {
     color: rgb(202, 202, 255);
 }
 
@@ -42,7 +42,7 @@
     display: none;
 }
 
-.red-team .name-input {
+.red_team .name-input {
     background-color: rgb(139, 35, 35);
     border: 2px solid rgb(219, 139, 139);
     padding: 5px;
@@ -50,12 +50,17 @@
     text-align: center;
 }
 
-.red-team .name-input::placeholder {
+.red_team .name-input::placeholder {
     color: rgb(247, 155, 155);
     text-align: center;
 }
 
-.blue-team .name-input {
+.red_team .name-input:focus {
+    border: 2px solid white;
+    outline: none;
+}
+
+.blue_team .name-input {
     background-color: rgb(28, 22, 145);
     border: 2px solid rgb(122, 154, 240);
     padding: 5px;
@@ -63,7 +68,12 @@
     text-align: center;
 }
 
-.blue-team .name-input::placeholder {
+.blue_team .name-input:focus {
+    border: 2px solid white;
+    outline: none;
+}
+
+.blue_team .name-input::placeholder {
     color: rgb(155, 184, 247);
     text-align: center;
 }

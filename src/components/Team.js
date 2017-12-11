@@ -26,45 +26,25 @@ export default class Team extends Component {
             edit: true
         });
     }
-    submitEdit(newName) {
-        this.setState({
-            name: newName,
-            edit: false
-        });
-    }
-    updateName() {
-        if (this.props.color === "red-team") {
-            axios
-                .put("/api/red_team/name", { name: this.state.input })
-                .then(result => {
-                    this.setState({ name: result.data });
+
+    updateName(event) {
+        event.preventDefault();
+        axios
+            .put(`/api/${this.props.color}/name/`, { name: this.state.input })
+            .then(result => {
+                this.setState({
+                    name: result.data,
+                    edit: false
                 });
-        } else {
-            axios
-                .put("/api/blue_team/name", { name: this.state.input })
-                .then(result => {
-                    this.setState({ name: result.data });
-                });
-        }
+            });
     }
 
     componentDidMount() {
-        if (this.props.color === "red-team") {
-            axios
-                .get("/api/red_team/name/")
-                .then(result => {
-                    this.setState({
-                        name: result.data
-                    });
-                })
-                .catch(console.log);
-        } else {
-            axios.get("/api/blue_team/name").then(result => {
-                this.setState({
-                    name: result.data
-                });
+        axios.get(`/api/${this.props.color}/name`).then(result => {
+            this.setState({
+                name: result.data
             });
-        }
+        });
     }
     render() {
         const teamMembers = this.props.teamMembers.map(champion => {
@@ -83,7 +63,7 @@ export default class Team extends Component {
                 <span className="team-header">{this.state.name}</span>
             </div>
         ) : (
-            <form>
+            <form onSubmit={e => this.updateName(e)}>
                 <input
                     className="name-input"
                     type="text"
@@ -92,9 +72,6 @@ export default class Team extends Component {
                     placeholder="Team Name"
                     onChange={e => this.changeInput(e.target.value)}
                 />
-                <button className="submit-name" onClick={this.updateName}>
-                    SUBMIT
-                </button>
             </form>
         );
         return (

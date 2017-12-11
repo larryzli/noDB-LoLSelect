@@ -10,6 +10,8 @@ export default class ChampList extends Component {
         this.state = {
             input: ""
         };
+
+        // this.champSelectedRed = this.champSelectedRed.bind(this);
     }
 
     inputChange(value) {
@@ -18,33 +20,50 @@ export default class ChampList extends Component {
         });
     }
 
+    // champSelectedRed() {
+    //     this.props.champAddRed()
+    //     this.setState({
+    //         input: ""
+    //     })
+    // }
+
     render() {
-        let champsLeft = this.props.champsLeft.map(
-            val =>
-                val.name === this.state.input ? null : (
-                    <Champion
-                        champAddRed={this.props.champAddRed}
-                        champAddBlue={this.props.champAddBlue}
-                        key={val.id}
-                        id={val.id}
-                        name={val.name}
-                        picURL={val.image_url}
-                    />
-                )
-        );
+        let champsLeft = !this.state.input
+            ? this.props.champsLeft.map(val => (
+                  <Champion
+                      champAddRed={this.props.champAddRed}
+                      champAddBlue={this.props.champAddBlue}
+                      key={val.id}
+                      id={val.id}
+                      name={val.name}
+                      picURL={val.image_url}
+                  />
+              ))
+            : this.props.champsLeft.map(
+                  val =>
+                      val.name
+                          .toLowerCase()
+                          .includes(this.state.input.toLowerCase()) ? (
+                          <Champion
+                              champAddRed={this.props.champAddRed}
+                              champAddBlue={this.props.champAddBlue}
+                              key={val.id}
+                              id={val.id}
+                              name={val.name}
+                              picURL={val.image_url}
+                          />
+                      ) : null
+              );
         return (
             <div className="champlist-container">
                 <div className="champlist-header">
-                    <button>RESET TEAMS</button>
+                    <button onClick={this.props.resetTeams}>RESET TEAMS</button>
                     <p>CHAMPIONS</p>
-                    <form>
-                        <input
-                            onChange={e => this.inputChange(e.target.value)}
-                            type="text"
-                            placeholder="Search"
-                        />
-                        {/* <input type="submit" /> */}
-                    </form>
+                    <input
+                        onChange={e => this.inputChange(e.target.value)}
+                        type="text"
+                        placeholder="Search Champions"
+                    />
                 </div>
                 <div className="champlist">{champsLeft}</div>
             </div>

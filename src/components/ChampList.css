@@ -4,7 +4,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - 70px);
     padding: 10px;
     box-sizing: border-box;
     justify-content: center;
@@ -27,17 +27,44 @@
 .champlist-header > p {
     margin: 0;
     height: 20px;
-    padding: 10px;
+    margin-top: 25px;
     font-size: 20px;
     text-align: center;
     font-weight: 700;
     color: rgb(218, 218, 218);
+    height: 50px;
 }
 
 .champlist-header button {
     padding: 5px;
+    background-color: rgb(36, 36, 36);
+    color: rgb(202, 202, 202);
+    border-radius: 0px;
+    border: 2px solid rgb(202, 202, 202);
+    font-weight: 500;
 }
 
-/* input[type="submit"] {
-    display: none;
-} */
+.champlist-header button:hover {
+    color: rgb(36, 36, 36);
+    background-color: rgb(202, 202, 202);
+}
+
+.champlist-header button:focus {
+    outline: none;
+}
+
+.champlist-header input {
+    background-color: rgb(88, 88, 88);
+    border: 2px solid rgb(158, 158, 158);
+    padding: 5px;
+    color: white;
+}
+
+.champlist-header input:focus {
+    border: 2px solid white;
+    outline: none;
+}
+
+.champlist-header input::placeholder {
+    color: rgb(167, 167, 167);
+}

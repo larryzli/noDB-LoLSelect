@@ -15,6 +15,8 @@ app.put("/api/red_team/name/", cc.updateRedName);
 
 app.get("/api/red_team/", cc.getRedTeam);
 app.post("/api/red_team/", cc.addRedMember);
+app.delete("/api/red_team/", cc.resetRed);
+
 app.delete("/api/red_team/:id", cc.removeRedMember);
 
 app.get("/api/blue_team/name/", cc.getBlueName);
@@ -22,6 +24,8 @@ app.put("/api/blue_team/name/", cc.updateBlueName);
 
 app.get("/api/blue_team/", cc.getBlueTeam);
 app.post("/api/blue_team/", cc.addBlueMember);
+app.delete("/api/blue_team/", cc.resetBlue);
+
 app.delete("/api/blue_team/:id", cc.removeBlueMember);
 
 const port = 3001;
