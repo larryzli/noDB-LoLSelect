@@ -21,3 +21,24 @@
     width: 100px;
     height: 100px;
 }
+
+.red-button {
+    width: 50px;
+    background-color: rgb(211, 49, 49);
+    border-radius: 0px;
+    border: none;
+    color: rgb(255, 187, 187);
+    padding: 4px;
+    margin: 2px;
+    border: 1px solid white;
+}
+.blue-button {
+    width: 50px;
+    background-color: rgb(64, 64, 228);
+    border-radius: 0px;
+    border: none;
+    color: rgb(188, 196, 255);
+    padding: 4px;
+    margin: 2px;
+    border: 1px solid white;
+}

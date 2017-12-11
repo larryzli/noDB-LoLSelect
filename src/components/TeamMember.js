@@ -7,8 +7,9 @@ const TeamMember = ({ name, imgURL, removeMember, id }) => {
             <p>{name}</p>
             <img src={imgURL} alt={`${name} champion pic`} />
             <br />
-            <button onClick={() => removeMember(id)}>REMOVE</button>
-            <hr />
+            <button className="remove" onClick={() => removeMember(id)}>
+                REMOVE
+            </button>
         </div>
     );
 };

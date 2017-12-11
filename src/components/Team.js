@@ -13,7 +13,7 @@ export default class Team extends Component {
             edit: false
         };
         this.allowEdit = this.allowEdit.bind(this);
-        this.updateRedName = this.updateRedName.bind(this);
+        this.updateName = this.updateName.bind(this);
         this.changeInput = this.changeInput.bind(this);
     }
     changeInput(value) {
@@ -32,12 +32,20 @@ export default class Team extends Component {
             edit: false
         });
     }
-    updateRedName() {
-        axios
-            .put("/api/red_team/name", { name: this.state.input })
-            .then(result => {
-                this.setState({ name: result.data });
-            });
+    updateName() {
+        if (this.props.color === "red-team") {
+            axios
+                .put("/api/red_team/name", { name: this.state.input })
+                .then(result => {
+                    this.setState({ name: result.data });
+                });
+        } else {
+            axios
+                .put("/api/blue_team/name", { name: this.state.input })
+                .then(result => {
+                    this.setState({ name: result.data });
+                });
+        }
     }
 
     componentDidMount() {
@@ -70,26 +78,28 @@ export default class Team extends Component {
                 />
             );
         });
-        const edit = !this.state.edit ? (
+        const nameDisplayEdit = !this.state.edit ? (
             <div onClick={this.allowEdit}>
                 <span className="team-header">{this.state.name}</span>
             </div>
         ) : (
             <form>
                 <input
+                    className="name-input"
                     type="text"
                     name=""
                     id=""
-                    placeholder={"Red Team Name"}
-                    // value="Red Team"
+                    placeholder="Team Name"
                     onChange={e => this.changeInput(e.target.value)}
                 />
-                <button onClick={this.updateRedName}>SUBMIT</button>
+                <button className="submit-name" onClick={this.updateName}>
+                    SUBMIT
+                </button>
             </form>
         );
         return (
             <div className="team">
-                <div className={this.props.color}>{edit}</div>
+                <div className={this.props.color}>{nameDisplayEdit}</div>
                 <div className="team-list">{teamMembers}</div>
             </div>
         );

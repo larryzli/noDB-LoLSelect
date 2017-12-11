@@ -42,7 +42,6 @@ export default class ChampSelect extends Component {
         }
     }
     champRemoveRed(champID) {
-        console.log(champID);
         axios.delete(`/api/red_team/${champID}`).then(result => {
             this.setState({
                 redTeam: result.data
@@ -50,7 +49,6 @@ export default class ChampSelect extends Component {
         });
     }
     champRemoveBlue(champID) {
-        console.log(champID);
         axios.delete(`/api/blue_team/${champID}`).then(result => {
             this.setState({
                 blueTeam: result.data

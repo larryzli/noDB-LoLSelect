@@ -1,5 +1,5 @@
 .team {
-    background-color: #cccccc;
+    background-color: #000000;
     height: 100%;
     width: 200px;
     display: flex;
@@ -10,7 +10,7 @@
 }
 .red-team {
     height: 50px;
-    background-color: #ff6868;
+    background-color: #d63434;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,4 +36,34 @@
 
 .blue-team .team-header {
     color: rgb(202, 202, 255);
+}
+
+.submit-name {
+    display: none;
+}
+
+.red-team .name-input {
+    background-color: rgb(139, 35, 35);
+    border: 2px solid rgb(219, 139, 139);
+    padding: 5px;
+    color: white;
+    text-align: center;
+}
+
+.red-team .name-input::placeholder {
+    color: rgb(247, 155, 155);
+    text-align: center;
+}
+
+.blue-team .name-input {
+    background-color: rgb(28, 22, 145);
+    border: 2px solid rgb(122, 154, 240);
+    padding: 5px;
+    color: white;
+    text-align: center;
+}
+
+.blue-team .name-input::placeholder {
+    color: rgb(155, 184, 247);
+    text-align: center;
 }

@@ -7,8 +7,15 @@ const Champion = ({ name, id, picURL, champAddRed, champAddBlue }) => {
             <p>{name}</p>
             <img src={picURL} alt={`${name} champion pic`} />
             <div>
-                <button onClick={() => champAddRed(id)}>RED</button>
-                <button onClick={() => champAddBlue(id)}>BLUE</button>
+                <button className="red-button" onClick={() => champAddRed(id)}>
+                    RED
+                </button>
+                <button
+                    className="blue-button"
+                    onClick={() => champAddBlue(id)}
+                >
+                    BLUE
+                </button>
             </div>
         </div>
     );

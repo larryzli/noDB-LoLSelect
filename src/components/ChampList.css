@@ -1,5 +1,5 @@
 .champlist {
-    background-color: rgb(46, 46, 46);
+    background-color: rgb(0, 0, 0);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -7,7 +7,7 @@
     height: calc(100% - 60px);
     padding: 10px;
     box-sizing: border-box;
-    /* justify-content: center; */
+    justify-content: center;
     align-content: flex-start;
     overflow: scroll;
 }
@@ -18,11 +18,26 @@
     height: 100%;
 }
 
-.champlist-container > p {
+.champlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.champlist-header > p {
     margin: 0;
     height: 20px;
     padding: 10px;
     font-size: 20px;
     text-align: center;
     font-weight: 700;
+    color: rgb(218, 218, 218);
 }
+
+.champlist-header button {
+    padding: 5px;
+}
+
+/* input[type="submit"] {
+    display: none;
+} */

@@ -3,7 +3,7 @@ const { APIkey } = require("./../config.js");
 let champions = [];
 
 const getAllChamps = (req, res, next) => {
-    if (champions.length !== 139) {
+    if (champions.length == 0) {
         console.log("get all champs");
         axios
             .get(
@@ -36,7 +36,6 @@ let blue_team = [];
 let blue_name = "Blue Team";
 
 const getRedName = (req, res, next) => {
-    console.log("getRedName: " + red_name);
     return res.status(200).json(red_name);
 };
 
@@ -45,13 +44,12 @@ const getBlueName = (req, res, next) => {
 };
 
 const updateRedName = (req, res, next) => {
-    console.log("updateRedName req: " + req.body);
     red_name = req.body.name;
     return res.status(200).json(red_name);
 };
 
 const updateBlueName = (req, res, next) => {
-    blue_name = req.body;
+    blue_name = req.body.name;
     return res.status(200).json(blue_name);
 };
 
