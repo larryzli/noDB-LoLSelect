@@ -151,6 +151,7 @@ let blue_team = [
 let blue_name = "Blue Team";
 
 const getRedName = (req, res, next) => {
+    console.log(red_name);
     return res.status(200).json(red_name);
 };
 
@@ -159,6 +160,7 @@ const getBlueName = (req, res, next) => {
 };
 
 const updateRedName = (req, res, next) => {
+    console.log(req.body);
     red_name = req.body;
     return res.status(200).json(red_name);
 };

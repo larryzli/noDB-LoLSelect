@@ -8,17 +8,49 @@ export default class Team extends Component {
         super(props);
 
         this.state = {
-            name: ""
+            name: "",
+            input: "",
+            edit: false
         };
+        this.allowEdit = this.allowEdit.bind(this);
+        this.updateRedName = this.updateRedName.bind(this);
+        this.changeInput = this.changeInput.bind(this);
+    }
+    changeInput(value) {
+        this.setState({
+            input: value
+        });
+    }
+    allowEdit() {
+        this.setState({
+            edit: true
+        });
+    }
+    submitEdit(newName) {
+        this.setState({
+            name: newName,
+            edit: false
+        });
+    }
+    updateRedName() {
+        // axios.put("/api/red_team/name", this.state.input).then(result => {
+        //     name: result.data;
+        // });
+        this.setState({
+            name: this.state.input
+        });
     }
 
     componentDidMount() {
         if (this.props.color === "red-team") {
-            axios.get("/api/red_team/name").then(result => {
-                this.setState({
-                    name: result.data
-                });
-            });
+            axios
+                .get("/api/red_team/name/")
+                .then(result => {
+                    this.setState({
+                        name: result.data
+                    });
+                })
+                .catch(console.log);
         } else {
             axios.get("/api/blue_team/name").then(result => {
                 this.setState({
@@ -40,11 +72,26 @@ export default class Team extends Component {
                 />
             );
         });
+
+        const edit = !this.state.edit ? (
+            <div onClick={this.allowEdit}>
+                <span className="team-header">{this.state.name}</span>
+            </div>
+        ) : (
+            <form>
+                <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder={this.state.name}
+                    onChange={e => this.changeInput(e.target.value)}
+                />
+                <button onClick={this.updateRedName}>SUBMIT</button>
+            </form>
+        );
         return (
             <div className="team">
-                <div className={this.props.color}>
-                    <span className="team-header">{this.state.name}</span>
-                </div>
+                <div className={this.props.color}>{edit}</div>
                 <div className="team-list">{teamMembers}</div>
             </div>
         );
