@@ -3,6 +3,13 @@
     background-color: black;
     height: 140px;
     padding-top: 5px;
+    border: 2px solid transparent;
+}
+
+.champion:hover {
+    border: 2px solid white;
+    background-color: rgb(71, 71, 71);
+    color: teal;
 }
 
 .champion p {
@@ -13,8 +20,4 @@
 .champion img {
     width: 100px;
     height: 100px;
-}
-
-.champion p:hover {
-    color: teal;
 }

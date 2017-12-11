@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import TeamMember from "./TeamMember.js";
 import "./Team.css";
 
@@ -13,35 +12,8 @@ export default class Team extends Component {
         };
     }
 
-    componentDidMount() {
-        if (this.props.color === "red-team") {
-            axios.get("/api/red_team/name").then(result => {
-                this.setState({
-                    name: result.data
-                });
-            });
-
-            axios.get("/api/red_team/").then(result => {
-                this.setState({
-                    teamMembers: result.data
-                });
-            });
-        } else {
-            axios.get("/api/blue_team/name").then(result => {
-                this.setState({
-                    name: result.data
-                });
-            });
-
-            axios.get("/api/blue_team/").then(result => {
-                this.setState({
-                    teamMembers: result.data
-                });
-            });
-        }
-    }
     render() {
-        const teamMembers = this.state.teamMembers.map(champion => {
+        const teamMembers = this.props.teamMembers.map(champion => {
             return (
                 <TeamMember
                     key={champion.id}
@@ -53,7 +25,7 @@ export default class Team extends Component {
         return (
             <div className="team">
                 <div className={this.props.color}>
-                    <p>{this.state.name}</p>
+                    <p>{this.props.name}</p>
                 </div>
                 {teamMembers}
             </div>

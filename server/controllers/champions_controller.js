@@ -1,62 +1,35 @@
 const axios = require("axios");
 const { APIkey } = require("./../config.js");
-let champions = [
-    {
-        id: 137,
-        name: "Tahm Kench",
-        armor: 47,
-        armorperlevel: 3.5,
-        attackdamage: 56,
-        attackdamageperlevel: 3.2,
-        attackrange: 175,
-        attackspeedoffset: 0,
-        attackspeedperlevel: 2.5,
-        crit: 0,
-        critperlevel: 0,
-        hp: 610,
-        hpperlevel: 95,
-        hpregen: 6.5,
-        hpregenperlevel: 0.55,
-        movespeed: 335,
-        mp: 325,
-        mpperlevel: 40,
-        mpregen: 8,
-        mpregenperlevel: 1,
-        spellblock: 32.1,
-        spellblockperlevel: 1.25,
-        image_url:
-            "https://pandacdn.blob.core.windows.net/cdn/images/lol/champion/image/137/TahmKench.png",
-        big_image_url:
-            "https://pandacdn.blob.core.windows.net/cdn/images/lol/champion/big_image/137/TahmKench_0.jpg"
-    },
-    {
-        id: 136,
-        name: "Vel'Koz",
-        armor: 21.88,
-        armorperlevel: 3.5,
-        attackdamage: 54.9379,
-        attackdamageperlevel: 3.1416,
-        attackrange: 525,
-        attackspeedoffset: 0,
-        attackspeedperlevel: 1.36,
-        crit: 0,
-        critperlevel: 0,
-        hp: 520,
-        hpperlevel: 88,
-        hpregen: 5.424,
-        hpregenperlevel: 0.55,
-        movespeed: 340,
-        mp: 375.6,
-        mpperlevel: 42,
-        mpregen: 6,
-        mpregenperlevel: 0.8,
-        spellblock: 30,
-        spellblockperlevel: 0.5,
-        image_url:
-            "https://pandacdn.blob.core.windows.net/cdn/images/lol/champion/image/136/Velkoz.png",
-        big_image_url:
-            "https://pandacdn.blob.core.windows.net/cdn/images/lol/champion/big_image/136/Velkoz_0.jpg"
-    },
+let champions = [];
+
+const getAllChamps = (req, res, next) => {
+    if (champions.length !== 139) {
+        console.log("get all champs");
+        axios
+            .get(
+                `https://api.pandascore.co/lol/champions?page=1&per_page=100&token=${
+                    APIkey
+                }`
+            )
+            .then(result => {
+                champions = result.data;
+                return axios.get(
+                    `https://api.pandascore.co/lol/champions?page=2&per_page=100&token=${
+                        APIkey
+                    }`
+                );
+            })
+            .then(result => {
+                champions = champions.concat(result.data);
+                return res.status(200).json(champions);
+            });
+    } else {
+        console.log("stored champs");
+        return res.status(200).json(champions);
+    }
+};
+
+let red_team = [
     {
         id: 135,
         name: "Gangplank",
@@ -115,44 +88,133 @@ let champions = [
     }
 ];
 
-const getAllChamps = (req, res, next) => {
-    if (champions.length !== 139) {
-        axios
-            .get(
-                `https://api.pandascore.co/lol/champions?page=1&per_page=100&token=${
-                    APIkey
-                }`
-            )
-            .then(result => {
-                champions = result.data;
-                return axios.get(
-                    `https://api.pandascore.co/lol/champions?page=2&per_page=100&token=${
-                        APIkey
-                    }`
-                );
-            })
-            .then(result => {
-                champions = champions.concat(result.data);
-                return res.status(200).json(champions);
-            });
-    } else {
-        console.log("else");
-        return res.status(200).json(champions);
+let red_name = "Red Team";
+
+let blue_team = [
+    {
+        id: 137,
+        name: "Tahm Kench",
+        armor: 47,
+        armorperlevel: 3.5,
+        attackdamage: 56,
+        attackdamageperlevel: 3.2,
+        attackrange: 175,
+        attackspeedoffset: 0,
+        attackspeedperlevel: 2.5,
+        crit: 0,
+        critperlevel: 0,
+        hp: 610,
+        hpperlevel: 95,
+        hpregen: 6.5,
+        hpregenperlevel: 0.55,
+        movespeed: 335,
+        mp: 325,
+        mpperlevel: 40,
+        mpregen: 8,
+        mpregenperlevel: 1,
+        spellblock: 32.1,
+        spellblockperlevel: 1.25,
+        image_url:
+            "https://pandacdn.blob.core.windows.net/cdn/images/lol/champion/image/137/TahmKench.png",
+        big_image_url:
+            "https://pandacdn.blob.core.windows.net/cdn/images/lol/champion/big_image/137/TahmKench_0.jpg"
+    },
+    {
+        id: 136,
+        name: "Vel'Koz",
+        armor: 21.88,
+        armorperlevel: 3.5,
+        attackdamage: 54.9379,
+        attackdamageperlevel: 3.1416,
+        attackrange: 525,
+        attackspeedoffset: 0,
+        attackspeedperlevel: 1.36,
+        crit: 0,
+        critperlevel: 0,
+        hp: 520,
+        hpperlevel: 88,
+        hpregen: 5.424,
+        hpregenperlevel: 0.55,
+        movespeed: 340,
+        mp: 375.6,
+        mpperlevel: 42,
+        mpregen: 6,
+        mpregenperlevel: 0.8,
+        spellblock: 30,
+        spellblockperlevel: 0.5,
+        image_url:
+            "https://pandacdn.blob.core.windows.net/cdn/images/lol/champion/image/136/Velkoz.png",
+        big_image_url:
+            "https://pandacdn.blob.core.windows.net/cdn/images/lol/champion/big_image/136/Velkoz_0.jpg"
     }
-    // return res.status(200).json(champions);
+];
+let blue_name = "Blue Team";
+
+const getRedName = (req, res, next) => {
+    return res.status(200).json(red_name);
 };
 
-const pickChamp = (req, res, next) => {
-    const champID = req.params.id;
-    const index = champions.findIndex(champ => champ.id === champID);
+const getBlueName = (req, res, next) => {
+    return res.status(200).json(blue_name);
+};
 
-    const pickedChampion = champions[index];
-    champions.splice(index, 1);
+const updateRedName = (req, res, next) => {
+    red_name = req.body;
+    return res.status(200).json(red_name);
+};
 
-    return res.status(200).json(pickedChampion);
+const updateBlueName = (req, res, next) => {
+    blue_name = req.body;
+    return res.status(200).json(blue_name);
+};
+
+const getRedTeam = (req, res, next) => {
+    return res.status(200).json(red_team);
+};
+
+const getBlueTeam = (req, res, next) => {
+    return res.status(200).json(blue_team);
+};
+
+const addRedMember = (req, res, next) => {
+    const index = champions.findIndex(
+        champion => champion.id == req.body.champID
+    );
+    red_team.push(champions[index]);
+    return res.status(200).json(red_team);
+};
+
+const addBlueMember = (req, res, next) => {
+    blue_team.push(req.body);
+    return res.status(200).json(blue_team);
+};
+
+const removeRedMember = (req, res, next) => {
+    const memberID = req.params.id;
+    const index = red_team.findIndex(member => member.id == memberID);
+
+    red_team.splice(index, 1);
+    return res.status(200).json(red_team);
+};
+
+const removeBlueMember = (req, res, next) => {
+    const memberID = req.params.id;
+    const index = blue_team.findIndex(member => member.id == memberID);
+
+    blue_team.splice(index, 1);
+    return res.status(200).json(blue_team);
 };
 
 module.exports = {
     getAllChamps,
-    pickChamp
+    getRedName,
+    getBlueName,
+    updateRedName,
+    updateBlueName,
+    getRedTeam,
+    getBlueTeam,
+    addRedMember,
+    addBlueMember,
+    removeRedMember,
+    removeBlueMember
 };

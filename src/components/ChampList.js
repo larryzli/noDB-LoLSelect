@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Champion from "./Champion";
 import "./ChampList.css";
 
@@ -7,11 +8,24 @@ export default class ChampList extends Component {
         super(props);
 
         this.state = {};
+        this.clickHandler = this.clickHandler.bind(this);
+    }
+    clickHandler(champID) {
+        console.log({ champID });
+        axios
+            .post(`/api/red_team/`, { champID })
+            .then(result => console.log(result.data));
     }
 
     render() {
         let champsLeft = this.props.champsLeft.map(val => (
-            <Champion key={val.id} name={val.name} picURL={val.image_url} />
+            <Champion
+                clickHandler={this.clickHandler}
+                key={val.id}
+                id={val.id}
+                name={val.name}
+                picURL={val.image_url}
+            />
         ));
         return (
             <div className="champlist-container">

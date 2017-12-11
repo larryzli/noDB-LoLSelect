@@ -1,9 +1,9 @@
 import React from "react";
 import "./Champion.css";
 
-const Champion = ({ name, picURL }) => {
+const Champion = ({ name, id, picURL, clickHandler }) => {
     return (
-        <div className="champion">
+        <div onClick={() => clickHandler(id)} className="champion">
             <p>{name}</p>
             <img src={picURL} alt={`${name} champion pic`} />
         </div>
