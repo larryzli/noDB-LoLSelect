@@ -33,12 +33,11 @@ export default class Team extends Component {
         });
     }
     updateRedName() {
-        // axios.put("/api/red_team/name", this.state.input).then(result => {
-        //     name: result.data;
-        // });
-        this.setState({
-            name: this.state.input
-        });
+        axios
+            .put("/api/red_team/name", { name: this.state.input })
+            .then(result => {
+                this.setState({ name: result.data });
+            });
     }
 
     componentDidMount() {
@@ -59,7 +58,6 @@ export default class Team extends Component {
             });
         }
     }
-
     render() {
         const teamMembers = this.props.teamMembers.map(champion => {
             return (
@@ -72,7 +70,6 @@ export default class Team extends Component {
                 />
             );
         });
-
         const edit = !this.state.edit ? (
             <div onClick={this.allowEdit}>
                 <span className="team-header">{this.state.name}</span>
@@ -83,7 +80,8 @@ export default class Team extends Component {
                     type="text"
                     name=""
                     id=""
-                    placeholder={this.state.name}
+                    placeholder={"Red Team Name"}
+                    // value="Red Team"
                     onChange={e => this.changeInput(e.target.value)}
                 />
                 <button onClick={this.updateRedName}>SUBMIT</button>
