@@ -21,10 +21,10 @@ export default class ChampList extends Component {
     }
 
     // champSelectedRed() {
-    //     this.props.champAddRed()
     //     this.setState({
     //         input: ""
-    //     })
+    //     });
+    //     this.props.champAddRed();
     // }
 
     render() {
@@ -45,7 +45,7 @@ export default class ChampList extends Component {
                           .toLowerCase()
                           .includes(this.state.input.toLowerCase()) ? (
                           <Champion
-                              champAddRed={this.props.champAddRed}
+                              champAddRed={this.props.champAddBlue}
                               champAddBlue={this.props.champAddBlue}
                               key={val.id}
                               id={val.id}
