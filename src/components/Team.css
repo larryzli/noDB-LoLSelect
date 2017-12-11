@@ -5,7 +5,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.team-list {
+    overflow: scroll;
+}
 .red-team {
     height: 50px;
     background-color: #ff6868;
@@ -22,8 +24,16 @@
     justify-content: center;
 }
 
-.team-header p {
+.team-header {
     margin: 0;
     font-weight: 700;
     font-size: 20px;
+}
+
+.red-team .team-header {
+    color: rgb(255, 211, 211);
+}
+
+.blue-team .team-header {
+    color: rgb(202, 202, 255);
 }

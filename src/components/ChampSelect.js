@@ -11,25 +11,47 @@ export default class ChampSelect extends Component {
         this.state = {
             champions: [],
             redTeam: [],
-            redName: "",
-            blueTeam: [],
-            blueName: ""
+            blueTeam: []
         };
 
         this.champAddRed = this.champAddRed.bind(this);
         this.champAddBlue = this.champAddBlue.bind(this);
+        this.champRemoveRed = this.champRemoveRed.bind(this);
+        this.champRemoveBlue = this.champRemoveBlue.bind(this);
     }
     champAddRed(champID) {
-        console.log({ champID });
-        axios.post(`/api/red_team/`, { champID }).then(result => {
+        if (this.state.redTeam.length < 5) {
+            axios.post(`/api/red_team/`, { champID }).then(result => {
+                this.setState({
+                    redTeam: result.data
+                });
+            });
+        } else {
+            alert("RED TEAM IS FULL");
+        }
+    }
+    champAddBlue(champID) {
+        if (this.state.blueTeam.length < 5) {
+            axios.post(`/api/blue_team/`, { champID }).then(result => {
+                this.setState({
+                    blueTeam: result.data
+                });
+            });
+        } else {
+            alert("BLUE TEAM IS FULL");
+        }
+    }
+    champRemoveRed(champID) {
+        console.log(champID);
+        axios.delete(`/api/red_team/${champID}`).then(result => {
             this.setState({
                 redTeam: result.data
             });
         });
     }
-    champAddBlue(champID) {
-        console.log({ champID });
-        axios.post(`/api/blue_team/`, { champID }).then(result => {
+    champRemoveBlue(champID) {
+        console.log(champID);
+        axios.delete(`/api/blue_team/${champID}`).then(result => {
             this.setState({
                 blueTeam: result.data
             });
@@ -44,20 +66,10 @@ export default class ChampSelect extends Component {
                 });
             })
             .catch(console.log);
-        axios.get("/api/red_team/name").then(result => {
-            this.setState({
-                redName: result.data
-            });
-        });
 
         axios.get("/api/red_team/").then(result => {
             this.setState({
                 redTeam: result.data
-            });
-        });
-        axios.get("/api/blue_team/name").then(result => {
-            this.setState({
-                blueName: result.data
             });
         });
 
@@ -74,7 +86,7 @@ export default class ChampSelect extends Component {
             <div className="champ-select">
                 <Team
                     color="red-team"
-                    name={this.state.redName}
+                    removeMember={this.champRemoveRed}
                     teamMembers={this.state.redTeam}
                 />
                 <ChampList
@@ -84,7 +96,7 @@ export default class ChampSelect extends Component {
                 />
                 <Team
                     color="blue-team"
-                    name={this.state.blueName}
+                    removeMember={this.champRemoveBlue}
                     teamMembers={this.state.blueTeam}
                 />
             </div>

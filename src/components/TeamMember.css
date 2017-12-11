@@ -17,12 +17,11 @@
     background-color: black;
     height: 140px;
     padding-top: 5px;
-    margin-top: 10px;
 }
 
 .team-member img {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
 }
 
 .team-member p {

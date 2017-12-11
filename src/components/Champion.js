@@ -3,9 +3,13 @@ import "./Champion.css";
 
 const Champion = ({ name, id, picURL, champAddRed, champAddBlue }) => {
     return (
-        <div onClick={() => champAddBlue(id)} className="champion">
+        <div className="champion">
             <p>{name}</p>
             <img src={picURL} alt={`${name} champion pic`} />
+            <div>
+                <button onClick={() => champAddRed(id)}>RED</button>
+                <button onClick={() => champAddBlue(id)}>BLUE</button>
+            </div>
         </div>
     );
 };

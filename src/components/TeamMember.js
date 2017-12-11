@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import "./TeamMember.css";
 
-export default class TeamMember extends Component {
-    render() {
-        return (
-            <div className="team-member">
-                <p>{this.props.name}</p>
-                <img
-                    src={this.props.imgURL}
-                    alt={`${this.props.name} champion pic`}
-                />
-            </div>
-        );
-    }
-}
+const TeamMember = ({ name, imgURL, removeMember, id }) => {
+    return (
+        <div className="team-member">
+            <p>{name}</p>
+            <img src={imgURL} alt={`${name} champion pic`} />
+            <br />
+            <button onClick={() => removeMember(id)}>REMOVE</button>
+            <hr />
+        </div>
+    );
+};
+
+export default TeamMember;
