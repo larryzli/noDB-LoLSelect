@@ -185,7 +185,10 @@ const addRedMember = (req, res, next) => {
 };
 
 const addBlueMember = (req, res, next) => {
-    blue_team.push(req.body);
+    const index = champions.findIndex(
+        champion => champion.id == req.body.champID
+    );
+    blue_team.push(champions[index]);
     return res.status(200).json(blue_team);
 };
 

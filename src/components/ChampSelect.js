@@ -15,6 +15,25 @@ export default class ChampSelect extends Component {
             blueTeam: [],
             blueName: ""
         };
+
+        this.champAddRed = this.champAddRed.bind(this);
+        this.champAddBlue = this.champAddBlue.bind(this);
+    }
+    champAddRed(champID) {
+        console.log({ champID });
+        axios.post(`/api/red_team/`, { champID }).then(result => {
+            this.setState({
+                redTeam: result.data
+            });
+        });
+    }
+    champAddBlue(champID) {
+        console.log({ champID });
+        axios.post(`/api/blue_team/`, { champID }).then(result => {
+            this.setState({
+                blueTeam: result.data
+            });
+        });
     }
     componentDidMount() {
         axios
@@ -58,7 +77,11 @@ export default class ChampSelect extends Component {
                     name={this.state.redName}
                     teamMembers={this.state.redTeam}
                 />
-                <ChampList champsLeft={this.state.champions} />
+                <ChampList
+                    champAddRed={this.champAddRed}
+                    champAddBlue={this.champAddBlue}
+                    champsLeft={this.state.champions}
+                />
                 <Team
                     color="blue-team"
                     name={this.state.blueName}

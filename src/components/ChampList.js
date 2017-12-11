@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Champion from "./Champion";
 import "./ChampList.css";
 
@@ -8,19 +8,20 @@ export default class ChampList extends Component {
         super(props);
 
         this.state = {};
-        this.clickHandler = this.clickHandler.bind(this);
+        // this.clickHandler = this.clickHandler.bind(this);
     }
-    clickHandler(champID) {
-        console.log({ champID });
-        axios
-            .post(`/api/red_team/`, { champID })
-            .then(result => console.log(result.data));
-    }
+    // clickHandler(champID) {
+    //     console.log({ champID });
+    //     axios
+    //         .post(`/api/red_team/`, { champID })
+    //         .then(result => console.log(result.data));
+    // }
 
     render() {
         let champsLeft = this.props.champsLeft.map(val => (
             <Champion
-                clickHandler={this.clickHandler}
+                champAddRed={this.props.champAddRed}
+                champAddBlue={this.props.champAddBlue}
                 key={val.id}
                 id={val.id}
                 name={val.name}
