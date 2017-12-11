@@ -7,3 +7,9 @@
     background-color: rgb(48, 48, 48);
     max-height: 750px;
 }
+
+.loader p {
+    text-align: center;
+    color: rgb(124, 124, 124);
+    font-size: 30px;
+}

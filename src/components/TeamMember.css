@@ -40,6 +40,7 @@
 
 .remove:hover {
     background-color: rgb(226, 59, 59);
-    color: rgb(253, 180, 180);
+    color: white;
+    /* color: rgb(253, 180, 180); */
     /* border: 1px solid white; */
 }

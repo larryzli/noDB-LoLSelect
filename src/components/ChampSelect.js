@@ -3,6 +3,7 @@ import axios from "axios";
 import Team from "./Team";
 import ChampList from "./ChampList";
 import "./ChampSelect.css";
+// import loader from "./../img/Pacman.svg";
 
 export default class ChampSelect extends Component {
     constructor(props) {
@@ -80,7 +81,6 @@ export default class ChampSelect extends Component {
     }
 
     resetTeams() {
-        console.log("RESET");
         axios
             .delete("/api/red_team/")
             .then(result => {
@@ -107,6 +107,20 @@ export default class ChampSelect extends Component {
                 blueTeamIDs.indexOf(champ.id) === -1
             );
         });
+        const loadingChamps =
+            this.state.champions.length === 0 ? (
+                <div className="loader">
+                    <p>LOADING CHAMPIONS...</p>
+                    {/* <img src={loader} alt="" /> */}
+                </div>
+            ) : (
+                <ChampList
+                    resetTeams={this.resetTeams}
+                    champAddRed={this.champAddRed}
+                    champAddBlue={this.champAddBlue}
+                    champsLeft={remainingChamps}
+                />
+            );
         return (
             <div className="champ-select">
                 <Team
@@ -114,12 +128,7 @@ export default class ChampSelect extends Component {
                     removeMember={this.champRemoveRed}
                     teamMembers={this.state.redTeam}
                 />
-                <ChampList
-                    resetTeams={this.resetTeams}
-                    champAddRed={this.champAddRed}
-                    champAddBlue={this.champAddBlue}
-                    champsLeft={remainingChamps}
-                />
+                {loadingChamps}
                 <Team
                     color="blue_team"
                     removeMember={this.champRemoveBlue}

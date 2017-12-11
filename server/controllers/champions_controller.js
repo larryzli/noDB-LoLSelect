@@ -95,11 +95,13 @@ const removeBlueMember = (req, res, next) => {
 
 const resetRed = (req, res, next) => {
     red_team = [];
+    red_name = "Red Team";
     return res.status(200).json(red_team);
 };
 
 const resetBlue = (req, res, next) => {
     blue_team = [];
+    blue_name = "Blue Team";
     return res.status(200).json(blue_team);
 };
 

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import axios from "axios";
 import Champion from "./Champion";
 import "./ChampList.css";
 
@@ -11,7 +10,7 @@ export default class ChampList extends Component {
             input: ""
         };
 
-        // this.champSelectedRed = this.champSelectedRed.bind(this);
+        this.resetInput = this.resetInput.bind(this);
     }
 
     inputChange(value) {
@@ -20,12 +19,12 @@ export default class ChampList extends Component {
         });
     }
 
-    // champSelectedRed() {
-    //     this.setState({
-    //         input: ""
-    //     });
-    //     this.props.champAddRed();
-    // }
+    resetInput() {
+        this.setState({
+            input: ""
+        });
+        this.render();
+    }
 
     render() {
         let champsLeft = !this.state.input
@@ -33,6 +32,7 @@ export default class ChampList extends Component {
                   <Champion
                       champAddRed={this.props.champAddRed}
                       champAddBlue={this.props.champAddBlue}
+                      reset={this.resetInput}
                       key={val.id}
                       id={val.id}
                       name={val.name}
@@ -47,6 +47,7 @@ export default class ChampList extends Component {
                           <Champion
                               champAddRed={this.props.champAddRed}
                               champAddBlue={this.props.champAddBlue}
+                              reset={this.resetInput}
                               key={val.id}
                               id={val.id}
                               name={val.name}
@@ -63,6 +64,7 @@ export default class ChampList extends Component {
                         onChange={e => this.inputChange(e.target.value)}
                         type="text"
                         placeholder="Search Champions"
+                        value={this.state.input}
                     />
                 </div>
                 <div className="champlist">{champsLeft}</div>
