@@ -34,21 +34,33 @@
 .red-button {
     width: 50px;
     background-color: rgb(211, 49, 49);
-    border-radius: 0px;
+    border-radius: 3px 0px 0px 3px;
     border: none;
     color: rgb(255, 187, 187);
     padding: 4px;
-    margin: 2px;
-    border: 1px solid white;
+    margin-left: 2px;
+    border: 1px solid rgb(187, 123, 123);
 }
 .blue-button {
     width: 50px;
     background-color: rgb(64, 64, 228);
-    border-radius: 0px;
+    border-radius: 0px 3px 3px 0px;
     border: none;
     color: rgb(188, 196, 255);
     padding: 4px;
-    margin: 2px;
+    margin-right: 2px;
+    border: 1px solid rgb(134, 138, 185);
+}
+
+.red-button:hover {
+    background-color: rgb(247, 64, 64);
+    color: white;
+    border: 1px solid white;
+}
+
+.blue-button:hover {
+    background-color: rgb(85, 85, 252);
+    color: white;
     border: 1px solid white;
 }
 

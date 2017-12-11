@@ -5,4 +5,5 @@
     flex-direction: row;
     height: 90vh;
     background-color: rgb(48, 48, 48);
+    max-height: 750px;
 }

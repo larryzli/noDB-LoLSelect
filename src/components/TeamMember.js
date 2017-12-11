@@ -6,7 +6,6 @@ const TeamMember = ({ name, imgURL, removeMember, id }) => {
         <div className="team-member">
             <p>{name}</p>
             <img src={imgURL} alt={`${name} champion pic`} />
-            <br />
             <button className="remove" onClick={() => removeMember(id)}>
                 REMOVE
             </button>

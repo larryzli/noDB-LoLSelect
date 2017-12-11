@@ -45,7 +45,7 @@ export default class ChampList extends Component {
                           .toLowerCase()
                           .includes(this.state.input.toLowerCase()) ? (
                           <Champion
-                              champAddRed={this.props.champAddBlue}
+                              champAddRed={this.props.champAddRed}
                               champAddBlue={this.props.champAddBlue}
                               key={val.id}
                               id={val.id}

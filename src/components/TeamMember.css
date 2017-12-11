@@ -2,8 +2,12 @@
     box-sizing: border-box;
     background-color: black;
     height: 140px;
-    padding-top: 5px;
-    border-bottom: 2px solid rgb(94, 92, 92);
+    padding-top: 10px;
+    border-bottom: 1px solid rgb(61, 60, 60);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .team-member img {
@@ -19,15 +23,23 @@
 }
 
 .remove {
-    background-color: rgb(134, 18, 18);
+    background-color: rgb(180, 57, 57);
     border-radius: 0;
     padding: 4px;
     width: 100%;
     border: none;
-    color: white;
+    color: black;
+    visibility: hidden;
+    /* border: 1px solid transparent; */
 }
 
-/* .remove:hover {
-    background-color: rgb(255, 65, 65);
-    color: black;
-} */
+.team-member:hover > .remove,
+.remove:hover {
+    visibility: visible;
+}
+
+.remove:hover {
+    background-color: rgb(226, 59, 59);
+    color: rgb(253, 180, 180);
+    /* border: 1px solid white; */
+}
