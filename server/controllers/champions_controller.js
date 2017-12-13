@@ -7,16 +7,12 @@ const getAllChamps = (req, res, next) => {
         console.log("get all champs");
         axios
             .get(
-                `https://api.pandascore.co/lol/champions?page=1&per_page=100&token=${
-                    APIkey
-                }`
+                `https://api.pandascore.co/lol/champions?page=1&per_page=100&token=${APIkey}&sort=name`
             )
             .then(result => {
                 champions = result.data;
                 return axios.get(
-                    `https://api.pandascore.co/lol/champions?page=2&per_page=100&token=${
-                        APIkey
-                    }`
+                    `https://api.pandascore.co/lol/champions?page=2&per_page=100&token=${APIkey}&sort=name`
                 );
             })
             .then(result => {
