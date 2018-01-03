@@ -12,6 +12,7 @@
         "react-scripts": "1.0.17"
     },
     "proxy": "http://localhost:3001",
+    "disableHostCheck": true,
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
