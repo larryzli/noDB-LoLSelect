@@ -26,8 +26,8 @@
 
 .team-header {
     margin: 0;
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 18px;
 }
 
 .red_team .team-header {
@@ -76,4 +76,10 @@
 .blue_team .name-input::placeholder {
     color: rgb(155, 184, 247);
     text-align: center;
+}
+
+@media (max-width: 674px) {
+    .team-header {
+        font-size: 12px;
+    }
 }

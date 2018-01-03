@@ -42,7 +42,8 @@ export default class Team extends Component {
     componentDidMount() {
         axios.get(`/api/${this.props.color}/name`).then(result => {
             this.setState({
-                name: result.data
+                name: result.data,
+                input: result.data
             });
         });
     }
@@ -60,7 +61,9 @@ export default class Team extends Component {
         });
         const nameDisplayEdit = !this.state.edit ? (
             <div onClick={this.allowEdit}>
-                <span className="team-header">{this.state.name}</span>
+                <span className="team-header">
+                    {this.state.name ? this.state.name : "Click to name"}
+                </span>
             </div>
         ) : (
             <form onSubmit={e => this.updateName(e)}>
@@ -70,6 +73,7 @@ export default class Team extends Component {
                     name=""
                     id=""
                     placeholder="Team Name"
+                    value={this.state.input}
                     onChange={e => this.changeInput(e.target.value)}
                 />
             </form>
