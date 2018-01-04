@@ -6,16 +6,17 @@
         "axios": "^0.17.1",
         "body-parser": "^1.18.2",
         "cors": "^2.8.4",
+        "dotenv": "^4.0.0",
         "express": "^4.16.2",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "react-scripts": "1.0.17"
     },
-    "proxy": "http://localhost:3001",
     "scripts": {
-        "start": "react-scripts start",
+        "start": "node server/index.js",
         "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "deploy": "now --public --dotenv=.env -d"
     }
 }

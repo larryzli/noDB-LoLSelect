@@ -1,8 +1,8 @@
 const axios = require("axios");
-const { APIkey } = require("./../config.js");
 let champions = [];
 
 const getAllChamps = (req, res, next) => {
+    const APIkey = process.env.APIKEY;
     if (champions.length == 0) {
         console.log("get all champs");
         axios
