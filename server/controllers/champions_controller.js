@@ -18,7 +18,8 @@ const getAllChamps = (req, res, next) => {
             .then(result => {
                 champions = champions.concat(result.data);
                 return res.status(200).json(champions);
-            });
+            })
+            .catch(console.log);
     } else {
         // console.log("stored champs");
         return res.status(200).json(champions);
