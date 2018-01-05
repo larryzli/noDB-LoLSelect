@@ -6,7 +6,7 @@ const cors = require("cors");
 const cc = require("./controllers/champions_controller.js");
 
 const app = express();
-app.use(express.static(`${__dirname}/../build`));
+// app.use(express.static(`${__dirname}/../build`));
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -28,6 +28,8 @@ app.get("/api/blue_team/", cc.getBlueTeam);
 app.post("/api/blue_team/", cc.addBlueMember);
 app.delete("/api/blue_team/", cc.resetBlue);
 
+app.put("/api/teams/", cc.resetTeamNames);
+
 app.delete("/api/blue_team/:id", cc.removeBlueMember);
 
 const path = require("path");
@@ -37,5 +39,5 @@ app.get("*", (req, res) => {
 
 const port = 3001;
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    // console.log(`Listening on port ${port}`);
 });

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import TeamMember from "./TeamMember.js";
 import "./Team.css";
 
@@ -8,7 +7,6 @@ export default class Team extends Component {
         super(props);
 
         this.state = {
-            name: "",
             input: "",
             edit: false
         };
@@ -23,30 +21,19 @@ export default class Team extends Component {
     }
     allowEdit() {
         this.setState({
-            edit: true
+            edit: true,
+            input: this.props.name
         });
     }
 
     updateName(event) {
         event.preventDefault();
-        axios
-            .put(`/api/${this.props.color}/name/`, { name: this.state.input })
-            .then(result => {
-                this.setState({
-                    name: result.data,
-                    edit: false
-                });
-            });
-    }
-
-    componentDidMount() {
-        axios.get(`/api/${this.props.color}/name`).then(result => {
-            this.setState({
-                name: result.data,
-                input: result.data
-            });
+        this.props.updateHandler(this.state.input);
+        this.setState({
+            edit: false
         });
     }
+
     render() {
         const teamMembers = this.props.teamMembers.map(champion => {
             return (
@@ -60,22 +47,24 @@ export default class Team extends Component {
             );
         });
         const nameDisplayEdit = !this.state.edit ? (
-            <div onClick={this.allowEdit}>
-                <span className="team-header">
-                    {this.state.name ? this.state.name : "Click to name"}
-                </span>
+            <div className="team-header" onClick={this.allowEdit}>
+                <div className="team-name">
+                    {this.props.name ? this.props.name : "Click to name"}
+                </div>
+                <div className="instructions">(click to rename)</div>
             </div>
         ) : (
             <form onSubmit={e => this.updateName(e)}>
                 <input
                     className="name-input"
                     type="text"
-                    name=""
                     id=""
                     placeholder="Team Name"
+                    maxLength="10"
                     value={this.state.input}
                     onChange={e => this.changeInput(e.target.value)}
                 />
+                <div className="instructions">(enter to submit)</div>
             </form>
         );
         return (

@@ -4,7 +4,7 @@ let champions = [];
 const getAllChamps = (req, res, next) => {
     const APIkey = process.env.APIKEY;
     if (champions.length == 0) {
-        console.log("get all champs");
+        // console.log("get all champs");
         axios
             .get(
                 `https://api.pandascore.co/lol/champions?page=1&per_page=100&token=${APIkey}&sort=name`
@@ -20,7 +20,7 @@ const getAllChamps = (req, res, next) => {
                 return res.status(200).json(champions);
             });
     } else {
-        console.log("stored champs");
+        // console.log("stored champs");
         return res.status(200).json(champions);
     }
 };
@@ -91,14 +91,20 @@ const removeBlueMember = (req, res, next) => {
 
 const resetRed = (req, res, next) => {
     red_team = [];
-    red_name = "Red Team";
     return res.status(200).json(red_team);
 };
 
 const resetBlue = (req, res, next) => {
     blue_team = [];
-    blue_name = "Blue Team";
     return res.status(200).json(blue_team);
+};
+
+const resetTeamNames = (req, res, next) => {
+    blue_name = "Blue Team";
+    red_name = "Red Team";
+
+    const names = { blue_name, red_name };
+    return res.status(200).json(names);
 };
 
 module.exports = {
@@ -114,5 +120,6 @@ module.exports = {
     removeRedMember,
     removeBlueMember,
     resetRed,
-    resetBlue
+    resetBlue,
+    resetTeamNames
 };

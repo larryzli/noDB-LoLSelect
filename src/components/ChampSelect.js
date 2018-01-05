@@ -3,7 +3,7 @@ import axios from "axios";
 import Team from "./Team";
 import ChampList from "./ChampList";
 import "./ChampSelect.css";
-// import loader from "./../img/Pacman.svg";
+import loader from "./../svg/grid.svg";
 
 export default class ChampSelect extends Component {
     constructor(props) {
@@ -12,7 +12,9 @@ export default class ChampSelect extends Component {
         this.state = {
             champions: [],
             redTeam: [],
-            blueTeam: []
+            blueTeam: [],
+            redName: "Red Team",
+            blueName: "Blue Team"
         };
 
         this.champAddRed = this.champAddRed.bind(this);
@@ -20,6 +22,8 @@ export default class ChampSelect extends Component {
         this.champRemoveRed = this.champRemoveRed.bind(this);
         this.champRemoveBlue = this.champRemoveBlue.bind(this);
         this.resetTeams = this.resetTeams.bind(this);
+        this.updateBlueName = this.updateBlueName.bind(this);
+        this.updateRedName = this.updateRedName.bind(this);
     }
     champAddRed(champID) {
         if (this.state.redTeam.length < 5) {
@@ -29,7 +33,7 @@ export default class ChampSelect extends Component {
                 });
             });
         } else {
-            alert("RED TEAM IS FULL");
+            alert(`${this.state.redName} is full.`);
         }
     }
     champAddBlue(champID) {
@@ -40,7 +44,7 @@ export default class ChampSelect extends Component {
                 });
             });
         } else {
-            alert("BLUE TEAM IS FULL");
+            alert(`${this.state.blueName} is full.`);
         }
     }
     champRemoveRed(champID) {
@@ -78,6 +82,16 @@ export default class ChampSelect extends Component {
                 blueTeam: result.data
             });
         });
+        axios.get(`/api/blue_team/name`).then(result => {
+            this.setState({
+                blueName: result.data
+            });
+        });
+        axios.get(`/api/red_team/name`).then(result => {
+            this.setState({
+                redName: result.data
+            });
+        });
     }
 
     resetTeams() {
@@ -97,7 +111,29 @@ export default class ChampSelect extends Component {
                 });
             })
             .catch(console.log);
+        axios.put("/api/teams/").then(result => {
+            this.setState({
+                blueName: result.data.blue_name,
+                redName: result.data.red_name
+            });
+        });
     }
+
+    updateBlueName(input) {
+        axios.put(`/api/blue_team/name/`, { name: input }).then(result => {
+            this.setState({
+                blueName: result.data
+            });
+        });
+    }
+    updateRedName(input) {
+        axios.put(`/api/red_team/name/`, { name: input }).then(result => {
+            this.setState({
+                redName: result.data
+            });
+        });
+    }
+
     render() {
         const redTeamIDs = this.state.redTeam.map(champ => champ.id);
         const blueTeamIDs = this.state.blueTeam.map(champ => champ.id);
@@ -110,8 +146,12 @@ export default class ChampSelect extends Component {
         const loadingChamps =
             this.state.champions.length === 0 ? (
                 <div className="loader">
-                    <p>LOADING CHAMPIONS...</p>
-                    {/* <img src={loader} alt="" /> */}
+                    <img
+                        className="loader-svg"
+                        src={loader}
+                        alt="loading animation"
+                    />
+                    <p className="loader-text">LOADING CHAMPIONS</p>
                 </div>
             ) : (
                 <ChampList
@@ -125,12 +165,16 @@ export default class ChampSelect extends Component {
             <div className="champ-select">
                 <Team
                     color="red_team"
+                    name={this.state.redName}
+                    updateHandler={this.updateRedName}
                     removeMember={this.champRemoveRed}
                     teamMembers={this.state.redTeam}
                 />
                 {loadingChamps}
                 <Team
                     color="blue_team"
+                    name={this.state.blueName}
+                    updateHandler={this.updateBlueName}
                     removeMember={this.champRemoveBlue}
                     teamMembers={this.state.blueTeam}
                 />

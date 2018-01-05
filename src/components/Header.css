@@ -1,13 +1,46 @@
 .header {
-    background-color: grey;
-    height: 10vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+    height: 10vh;
+    background-color: grey;
+    box-sizing: border-box;
+    padding: 12px 0;
+    min-height: 70px;
+}
+.title {
     text-align: center;
     font-family: sans-serif;
-    color: white;
+    color: rgb(201, 201, 201);
     font-size: 2em;
     letter-spacing: 0.05em;
     font-weight: 700;
+}
+.subtitle {
+    text-align: center;
+    font-family: sans-serif;
+    color: rgb(255, 244, 162);
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+.author {
+    font-size: 0.5em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+a {
+    text-decoration: none;
+    color: cyan;
+    opacity: 0.5;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: cyan;
 }

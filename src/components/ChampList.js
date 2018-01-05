@@ -60,11 +60,10 @@ export default class ChampList extends Component {
                 <div className="champlist-header">
                     <div>
                         <button onClick={this.props.resetTeams}>
-                            CLEAR TEAMS
+                            RESET TEAMS
                         </button>
-                        {/* <button>RESET TEAM NAMES</button> */}
                     </div>
-                    <p>CHAMPIONS</p>
+                    <div className="champs">CHAMPIONS</div>
                     <input
                         onChange={e => this.inputChange(e.target.value)}
                         type="text"
