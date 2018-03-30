@@ -10,27 +10,107 @@
 }
 .champ-info-container {
   background-color: rgb(70, 70, 70);
-  border-radius: 5px;
+  /* border-radius: 5px; */
+  border: 5px solid rgb(146, 146, 146);
+  display: flex;
+  box-shadow: 2px 2px 10px black;
 }
 
 .champ-info-data {
   color: white;
-  padding: 20px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 308px;
 }
 
 .champ-info-name {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 15px;
+}
+
+.champ-info-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgb(173, 173, 173);
+  margin-top: 5px;
+}
+
+.champ-info-roles {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.champ-info-lore {
+  text-align: left;
+  font-size: 14px;
+  padding: 15px 20px;
+  background-color: rgb(49, 49, 49);
+  /* width: 80%; */
+  max-width: 268px;
+  max-height: 60px;
+  overflow: scroll;
+  margin-top: 10px;
+  font-weight: 100;
+  color: rgb(201, 201, 201);
+  letter-spacing: 0.02em;
 }
 
 .champ-info-stats-title {
+  margin-top: 15px;
   text-decoration: underline;
-  margin-bottom: 10px;
 }
 
 .champ-info-stat {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
+  text-align: left;
+  /* justify-content: space-between; */
+  width: 35%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.champ-info-stats {
+  display: flex;
+  flex-wrap: wrap;
+  /* box-sizing: border-box; */
+  margin-top: 10px;
+  width: 308px;
+}
+
+.champ-stat-label {
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 3px;
+  color: rgb(129, 129, 129);
+}
+
+.champ-stat-value {
+  font-weight: 300;
+}
+
+.champ-info-button {
+  background-color: transparent;
+  margin: 0 10px;
+  color: white;
+  border-radius: 3px;
+  border: 1px solid white;
+  outline: none;
+}
+
+.champ-info-button:hover {
+  background-color: white;
+  color: rgb(70, 70, 70);
+}
+
+.champ-info-skills {
+  margin-top: 15px;
+}
+
+.champ-img-skill {
+  height: 50px;
+  width: 50px;
+  border: 1px solid rgb(146, 146, 146);
 }

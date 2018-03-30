@@ -17,7 +17,8 @@ export default class ChampSelect extends Component {
       redName: "Red Team",
       blueName: "Blue Team",
       showChampInfo: false,
-      infoIndex: 0
+      infoIndex: 0,
+      url: ""
     };
 
     this.champAddRed = this.champAddRed.bind(this);
@@ -67,7 +68,6 @@ export default class ChampSelect extends Component {
     });
   }
   displayInfo(champID) {
-    console.log("displayInfo");
     let index = this.state.champions.findIndex(champ => champ.id === champID);
     this.setState({ showChampInfo: true, infoIndex: index });
   }
@@ -78,7 +78,6 @@ export default class ChampSelect extends Component {
     axios
       .get("/api/champions/")
       .then(result => {
-        console.log(result);
         return this.setState({
           champions: result.data
         });
@@ -106,6 +105,11 @@ export default class ChampSelect extends Component {
         redName: result.data
       });
     });
+    axios
+      .get("https://ddragon.leagueoflegends.com/realms/na.json")
+      .then(response => {
+        this.setState({ url: `${response.data.cdn}/${response.data.v}` });
+      });
   }
 
   resetTeams() {
@@ -197,6 +201,7 @@ export default class ChampSelect extends Component {
           <ChampInfo
             data={this.state.champions[this.state.infoIndex]}
             closeInfo={this.closeInfo}
+            url={this.state.url}
           />
         ) : null}
       </div>
