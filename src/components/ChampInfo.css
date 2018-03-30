@@ -50,7 +50,7 @@
   /* width: 80%; */
   max-width: 268px;
   max-height: 60px;
-  overflow: scroll;
+  overflow-y: auto;
   margin-top: 10px;
   font-weight: 100;
   color: rgb(201, 201, 201);
@@ -106,7 +106,7 @@
 }
 
 .champ-info-skills {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .champ-img-skill {

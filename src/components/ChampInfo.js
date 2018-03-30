@@ -85,7 +85,7 @@ class ChampInfo extends Component {
               ) : null}
               {!this.state.loading ? (
                 <div className="champ-info-roles">
-                  Roles: {this.state.details.tags.join(" / ")}
+                  {this.state.details.tags.join(" / ")}
                 </div>
               ) : null}
               {!this.state.loading ? (
@@ -214,6 +214,21 @@ class ChampInfo extends Component {
                 </div>
               </div>
               <div className="champ-info-skills">
+                {/* <div className="champ-skill-tooltip">
+                  {this.state.details.passive.description}
+                </div> */}
+                {/* <div className="champ-skill-tooltip">
+                  {this.state.details.spells[0].description}
+                </div> */}
+                {/* <div className="champ-skill-tooltip">
+                  {this.state.details.spells[1].description}
+                </div> */}
+                {/* <div className="champ-skill-tooltip">
+                  {this.state.details.spells[2].description}
+                </div> */}
+                {/* <div className="champ-skill-tooltip">
+                  {this.state.details.spells[3].description}
+                </div> */}
                 <img
                   className="champ-img-skill"
                   src={`${this.props.url}/img/passive/${

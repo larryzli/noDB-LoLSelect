@@ -1,96 +1,97 @@
 .team {
-    background-color: #000000;
-    height: 100%;
-    width: 150px;
-    min-width: 150px;
-    display: flex;
-    flex-direction: column;
+  background-color: #000000;
+  height: 100%;
+  width: 150px;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
 }
 .team-list {
-    overflow: scroll;
+  overflow: auto;
+  overflow-x: hidden;
 }
 .red_team {
-    height: 50px;
-    min-height: 40px;
-    background-color: #d63434;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 50px;
+  min-height: 40px;
+  background-color: #d63434;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .blue_team {
-    height: 50px;
-    min-height: 40px;
-    background-color: #2860fc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 50px;
+  min-height: 40px;
+  background-color: #2860fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .team-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5px 0;
 }
 
 .instructions {
-    font-size: 9px;
-    color: rgba(0, 0, 0, 0.5);
+  font-size: 9px;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .team-name {
-    margin: 0;
-    font-weight: 600;
-    font-size: 18px;
-    padding: 3px 0;
-    color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 3px 0;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .submit-name {
-    display: none;
+  display: none;
 }
 
 .red_team .name-input {
-    background-color: rgb(139, 35, 35);
-    border: 2px solid rgb(219, 139, 139);
-    padding: 5px;
-    color: white;
-    text-align: center;
+  background-color: rgb(139, 35, 35);
+  border: 2px solid rgb(219, 139, 139);
+  padding: 5px;
+  color: white;
+  text-align: center;
 }
 
 .red_team .name-input::placeholder {
-    color: rgb(247, 155, 155);
-    text-align: center;
+  color: rgb(247, 155, 155);
+  text-align: center;
 }
 
 .red_team .name-input:focus {
-    border: 2px solid white;
-    outline: none;
+  border: 2px solid white;
+  outline: none;
 }
 
 .blue_team .name-input {
-    background-color: rgb(28, 22, 145);
-    border: 2px solid rgb(122, 154, 240);
-    padding: 5px;
-    color: white;
-    text-align: center;
+  background-color: rgb(28, 22, 145);
+  border: 2px solid rgb(122, 154, 240);
+  padding: 5px;
+  color: white;
+  text-align: center;
 }
 
 .blue_team .name-input:focus {
-    border: 2px solid white;
-    outline: none;
+  border: 2px solid white;
+  outline: none;
 }
 
 .blue_team .name-input::placeholder {
-    color: rgb(155, 184, 247);
-    text-align: center;
+  color: rgb(155, 184, 247);
+  text-align: center;
 }
 
 @media (max-width: 674px) {
-    .team-header {
-        font-size: 12px;
-    }
+  .team-header {
+    font-size: 12px;
+  }
 }
