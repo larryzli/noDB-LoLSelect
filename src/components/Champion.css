@@ -1,69 +1,70 @@
 .champion {
-    box-sizing: border-box;
-    background-color: black;
-    height: 160px;
-    padding-top: 5px;
-    border: 2px solid transparent;
+  box-sizing: border-box;
+  background-color: black;
+  height: 160px;
+  padding-top: 5px;
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
 }
 
 .champion:hover {
-    border: 2px solid white;
-    background-color: rgb(71, 71, 71);
-    color: teal;
+  border: 2px solid white;
+  background-color: rgb(71, 71, 71);
+  color: teal;
 }
 
 .champion p {
-    margin: 0;
-    color: white;
-    text-align: center;
+  margin: 0;
+  color: white;
+  text-align: center;
 }
 .champion img {
-    width: 100px;
-    height: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 .champion:hover > .buttons-container,
 .buttons-container:hover {
-    visibility: visible;
+  visibility: visible;
 }
 
 .buttons-container {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .red-button {
-    width: 50px;
-    background-color: rgb(211, 49, 49);
-    border-radius: 3px 0px 0px 3px;
-    border: none;
-    color: rgb(255, 187, 187);
-    padding: 4px;
-    margin-left: 2px;
-    border: 1px solid rgb(187, 123, 123);
+  width: 50px;
+  background-color: rgb(211, 49, 49);
+  border-radius: 3px 0px 0px 3px;
+  border: none;
+  color: rgb(255, 187, 187);
+  padding: 4px;
+  margin-left: 2px;
+  border: 1px solid rgb(187, 123, 123);
 }
 .blue-button {
-    width: 50px;
-    background-color: rgb(64, 64, 228);
-    border-radius: 0px 3px 3px 0px;
-    border: none;
-    color: rgb(188, 196, 255);
-    padding: 4px;
-    margin-right: 2px;
-    border: 1px solid rgb(134, 138, 185);
+  width: 50px;
+  background-color: rgb(64, 64, 228);
+  border-radius: 0px 3px 3px 0px;
+  border: none;
+  color: rgb(188, 196, 255);
+  padding: 4px;
+  margin-right: 2px;
+  border: 1px solid rgb(134, 138, 185);
 }
 
 .red-button:hover {
-    background-color: rgb(247, 64, 64);
-    color: white;
-    border: 1px solid white;
+  background-color: rgb(247, 64, 64);
+  color: white;
+  border: 1px solid white;
 }
 
 .blue-button:hover {
-    background-color: rgb(85, 85, 252);
-    color: white;
-    border: 1px solid white;
+  background-color: rgb(85, 85, 252);
+  color: white;
+  border: 1px solid white;
 }
 
 button:focus {
-    outline: none;
+  outline: none;
 }

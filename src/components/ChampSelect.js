@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 import Team from "./Team";
 import ChampList from "./ChampList";
 import ChampInfo from "./ChampInfo";
@@ -39,7 +40,11 @@ export default class ChampSelect extends Component {
         });
       });
     } else {
-      alert(`${this.state.redName} is full.`);
+      swal(
+        `${this.state.redName} is full.`,
+        "A team can not contain more than 5 champions.",
+        "error"
+      );
     }
   }
   champAddBlue(champID) {
@@ -50,7 +55,11 @@ export default class ChampSelect extends Component {
         });
       });
     } else {
-      alert(`${this.state.blueName} is full.`);
+      swal(
+        `${this.state.blueName} is full.`,
+        "A team can not contain more than 5 champions.",
+        "error"
+      );
     }
   }
   champRemoveRed(champID) {

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ReactTooltip from "react-tooltip";
 import "./ChampInfo.css";
 import placeholder from "../png/card_placeholder.png";
+import circles from "../svg/circles.svg";
 
 class ChampInfo extends Component {
   constructor(props) {
@@ -11,11 +13,13 @@ class ChampInfo extends Component {
       details: {},
       loading: true,
       urlName: this.props.data.name
-        .split(" ")
-        .join("")
+        .toLowerCase()
         .split(".")
         .join("")
         .split("'")
+        .join("")
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join("")
     };
   }
@@ -24,22 +28,16 @@ class ChampInfo extends Component {
       axios
         .get(
           `${this.props.url}/data/en_US/champion/${
-            this.state.urlName === "ChoGath" ? "Chogath" : this.state.urlName
+            this.state.urlName === "Reksai" ? "RekSai" : this.state.urlName
           }.json`
         )
         .then(response => {
           // console.log(response);
-          console.log(
-            response.data.data[
-              this.state.urlName === "ChoGath" ? "Chogath" : this.state.urlName
-            ]
-          );
+          // console.log(response.data.data[this.state.urlName]);
           this.setState({
             details:
               response.data.data[
-                this.state.urlName === "ChoGath"
-                  ? "Chogath"
-                  : this.state.urlName
+                this.state.urlName === "Reksai" ? "RekSai" : this.state.urlName
               ],
             loading: false
           });
@@ -60,11 +58,6 @@ class ChampInfo extends Component {
         this.props.data.big_image_url
       }), url(${placeholder})`
     };
-    // if (!this.state.loading) {
-    //   const spells = this.state.details.spells.map(spell => {
-
-    //   });
-    // }
     return (
       <div
         className="champ-info-background"
@@ -214,22 +207,69 @@ class ChampInfo extends Component {
                 </div>
               </div>
               <div className="champ-info-skills">
-                {/* <div className="champ-skill-tooltip">
-                  {this.state.details.passive.description}
-                </div> */}
-                {/* <div className="champ-skill-tooltip">
-                  {this.state.details.spells[0].description}
-                </div> */}
-                {/* <div className="champ-skill-tooltip">
-                  {this.state.details.spells[1].description}
-                </div> */}
-                {/* <div className="champ-skill-tooltip">
-                  {this.state.details.spells[2].description}
-                </div> */}
-                {/* <div className="champ-skill-tooltip">
-                  {this.state.details.spells[3].description}
-                </div> */}
+                <ReactTooltip
+                  id="passive"
+                  effect="solid"
+                  className="champ-skill-tooltip"
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        "PASSIVE – " + this.state.details.passive.description
+                    }}
+                  />
+                </ReactTooltip>
+                <ReactTooltip
+                  id="skill1"
+                  effect="solid"
+                  className="champ-skill-tooltip"
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        "SKILL 1 – " + this.state.details.spells[0].description
+                    }}
+                  />
+                </ReactTooltip>
+                <ReactTooltip
+                  id="skill2"
+                  effect="solid"
+                  className="champ-skill-tooltip"
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        "SKILL 2 – " + this.state.details.spells[1].description
+                    }}
+                  />
+                </ReactTooltip>
+                <ReactTooltip
+                  id="skill3"
+                  effect="solid"
+                  className="champ-skill-tooltip"
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        "SKILL 3 – " + this.state.details.spells[2].description
+                    }}
+                  />
+                </ReactTooltip>
+                <ReactTooltip
+                  id="skill4"
+                  effect="solid"
+                  className="champ-skill-tooltip"
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        "ULTIMATE – " + this.state.details.spells[3].description
+                    }}
+                  />
+                </ReactTooltip>
                 <img
+                  data-tip
+                  data-for="passive"
                   className="champ-img-skill"
                   src={`${this.props.url}/img/passive/${
                     this.state.details.passive.image.full
@@ -237,6 +277,8 @@ class ChampInfo extends Component {
                   alt={this.state.details.passive.name}
                 />
                 <img
+                  data-tip
+                  data-for="skill1"
                   className="champ-img-skill"
                   src={`${this.props.url}/img/spell/${
                     this.state.details.spells[0].image.full
@@ -244,6 +286,8 @@ class ChampInfo extends Component {
                   alt={this.state.details.spells[0].name}
                 />
                 <img
+                  data-tip
+                  data-for="skill2"
                   className="champ-img-skill"
                   src={`${this.props.url}/img/spell/${
                     this.state.details.spells[1].image.full
@@ -251,6 +295,8 @@ class ChampInfo extends Component {
                   alt={this.state.details.spells[1].name}
                 />
                 <img
+                  data-tip
+                  data-for="skill3"
                   className="champ-img-skill"
                   src={`${this.props.url}/img/spell/${
                     this.state.details.spells[2].image.full
@@ -258,6 +304,8 @@ class ChampInfo extends Component {
                   alt={this.state.details.spells[2].name}
                 />
                 <img
+                  data-tip
+                  data-for="skill4"
                   className="champ-img-skill"
                   src={`${this.props.url}/img/spell/${
                     this.state.details.spells[3].image.full
@@ -267,7 +315,9 @@ class ChampInfo extends Component {
               </div>
             </div>
           ) : (
-            <div className="champ-info-data">LOADING...</div>
+            <div className="champ-info-data">
+              <img src={circles} alt="loading data" />
+            </div>
           )}
         </div>
       </div>
