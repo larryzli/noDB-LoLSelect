@@ -26,10 +26,13 @@
 .champion:hover > .buttons-container,
 .buttons-container:hover {
   visibility: visible;
+  opacity: 1;
 }
 
 .buttons-container {
   visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .red-button {
@@ -41,6 +44,7 @@
   padding: 4px;
   margin-left: 2px;
   border: 1px solid rgb(187, 123, 123);
+  transition: border 0.4s ease;
 }
 .blue-button {
   width: 50px;
@@ -51,6 +55,7 @@
   padding: 4px;
   margin-right: 2px;
   border: 1px solid rgb(134, 138, 185);
+  transition: border 0.2s ease;
 }
 
 .red-button:hover {

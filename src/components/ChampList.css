@@ -41,6 +41,7 @@
   border: 2px solid rgb(202, 202, 202);
   font-weight: 500;
   width: 139px;
+  transition: all 0.4s ease;
 }
 
 .champlist-header button:hover {
@@ -57,6 +58,7 @@
   border: 2px solid rgb(158, 158, 158);
   padding: 5px;
   color: white;
+  transition: all 0.4s ease;
 }
 
 .champlist-header input:focus {

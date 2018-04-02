@@ -30,12 +30,15 @@
   border: none;
   color: black;
   visibility: hidden;
+  transition: all 0.4s ease;
+  opacity: 0;
   /* border: 1px solid transparent; */
 }
 
 .team-member:hover > .remove,
 .remove:hover {
   visibility: visible;
+  opacity: 1;
 }
 
 .remove:hover {
