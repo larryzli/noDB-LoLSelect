@@ -14,12 +14,14 @@
     "react-tooltip": "^3.4.0",
     "sweetalert": "^2.1.0"
   },
-  "proxy": "http://localhost:3001",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "now --public --dotenv=.env -d"
+  },
+  "now": {
+    "alias": "lolpicker"
   }
 }

@@ -117,7 +117,9 @@ export default class ChampSelect extends Component {
     axios
       .get("https://ddragon.leagueoflegends.com/realms/na.json")
       .then(response => {
-        this.setState({ url: `${response.data.cdn}/${response.data.v}` });
+        this.setState({
+          url: `https${response.data.cdn.substr(4)}/${response.data.v}`
+        });
       });
   }
 
