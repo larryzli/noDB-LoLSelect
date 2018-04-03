@@ -162,8 +162,12 @@ export default class ChampSelect extends Component {
   }
 
   render() {
-    const redTeamIDs = this.state.redTeam.map(champ => champ.id);
-    const blueTeamIDs = this.state.blueTeam.map(champ => champ.id);
+    const redTeamIDs = this.state.redTeam.length
+      ? this.state.redTeam.map(champ => champ.id)
+      : [];
+    const blueTeamIDs = this.state.blueTeam.length
+      ? this.state.blueTeam.map(champ => champ.id)
+      : [];
     const remainingChamps = this.state.champions.filter(champ => {
       return (
         redTeamIDs.indexOf(champ.id) === -1 &&
