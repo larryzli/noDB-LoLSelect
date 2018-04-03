@@ -23,12 +23,12 @@ export default class ChampList extends Component {
     this.setState({
       input: ""
     });
-    this.render();
   }
 
   render() {
-    let champsLeft = !this.state.input
-      ? this.props.champsLeft.map(val => (
+    let champsLeft = this.props.champsLeft.map(
+      val =>
+        val.name.toLowerCase().includes(this.state.input.toLowerCase()) ? (
           <Champion
             champAddRed={this.props.champAddRed}
             champAddBlue={this.props.champAddBlue}
@@ -39,22 +39,8 @@ export default class ChampList extends Component {
             picURL={val.image_url}
             displayInfo={this.props.displayInfo}
           />
-        ))
-      : this.props.champsLeft.map(
-          val =>
-            val.name.toLowerCase().includes(this.state.input.toLowerCase()) ? (
-              <Champion
-                champAddRed={this.props.champAddRed}
-                champAddBlue={this.props.champAddBlue}
-                reset={this.resetInput}
-                key={val.id}
-                id={val.id}
-                name={val.name}
-                picURL={val.image_url}
-                displayInfo={this.props.displayInfo}
-              />
-            ) : null
-        );
+        ) : null
+    );
     return (
       <div className="champlist-container">
         <div className="champlist-header">

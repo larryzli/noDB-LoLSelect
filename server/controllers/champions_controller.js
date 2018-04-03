@@ -69,16 +69,24 @@ const addRedMember = (req, res, next) => {
   const index = champions.findIndex(
     champion => champion.id == req.body.champID
   );
-  red_team.push(champions[index]);
-  return res.status(200).json(red_team);
+  if (!red_team.includes(champions[index])) {
+    red_team.push(champions[index]);
+    return res.status(200).json(red_team);
+  } else {
+    return res.status(200).json(red_team);
+  }
 };
 
 const addBlueMember = (req, res, next) => {
   const index = champions.findIndex(
     champion => champion.id == req.body.champID
   );
-  blue_team.push(champions[index]);
-  return res.status(200).json(blue_team);
+  if (!blue_team.includes(champions[index])) {
+    blue_team.push(champions[index]);
+    return res.status(200).json(blue_team);
+  } else {
+    return res.status(200).json(blue_team);
+  }
 };
 
 const removeRedMember = (req, res, next) => {
