@@ -12,36 +12,37 @@ class ChampInfo extends Component {
       level: 1,
       details: {},
       loading: true,
-      urlName: this.props.data.name
-        .toLowerCase()
-        .split(".")
-        .join("")
-        .split("'")
-        .join("")
-        .split(" ")
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join("")
+      urlName: "",
+      splash: 0
     };
   }
   componentDidMount() {
     if (this.props.url) {
-      axios
-        .get(
-          `${this.props.url}/data/en_US/champion/${
-            this.state.urlName === "Reksai" ? "RekSai" : this.state.urlName
-          }.json`
-        )
-        .then(response => {
-          // console.log(response);
-          // console.log(response.data.data[this.state.urlName]);
-          this.setState({
-            details:
-              response.data.data[
-                this.state.urlName === "Reksai" ? "RekSai" : this.state.urlName
-              ],
-            loading: false
+      axios.get(`${this.props.url}/data/en_US/champion.json`).then(response => {
+        let val = "";
+        for (let key in response.data.data) {
+          if (response.data.data[key].name === this.props.data.name) {
+            val = response.data.data[key].id;
+          }
+        }
+        axios
+          .get(`${this.props.url}/data/en_US/champion/${val}.json`)
+          .then(response => {
+            this.setState({
+              details: response.data.data[val],
+              loading: false,
+              urlName: val
+            });
           });
-        });
+      });
+    }
+  }
+  changeSkin(val) {
+    if (
+      this.state.splash >= 0 &&
+      this.state.splash < this.state.details.skins.length
+    ) {
+      this.setState({ splash: this.state.splash + val });
     }
   }
   changeLevel(val) {
@@ -50,13 +51,17 @@ class ChampInfo extends Component {
     }
   }
   render() {
-    // console.log(this.props.data);
     const imageStyle = {
       width: "308px",
       height: "560px",
-      backgroundImage: `url(${
-        this.props.data.big_image_url
-      }), url(${placeholder})`
+      backgroundImage:
+        this.state.urlName && this.state.details.skins
+          ? `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${
+              this.state.urlName
+            }_${
+              this.state.details.skins[this.state.splash].num
+            }.jpg), url(${placeholder})`
+          : `url(${placeholder})`
     };
     return (
       <div
@@ -67,7 +72,41 @@ class ChampInfo extends Component {
           className="champ-info-container"
           onClick={e => e.stopPropagation()}
         >
-          <div style={imageStyle} />
+          <div style={imageStyle} className="champ-img">
+            <button
+              className="champ-info-button"
+              onClick={e =>
+                this.state.splash === 0
+                  ? this.setState({
+                      splash: this.state.details.skins.length - 1
+                    })
+                  : this.changeSkin(-1)
+              }
+              style={{ marginBottom: "20px" }}
+            >
+              {"<"}
+            </button>
+            <div className="champ-img-name">
+              {this.state.details.skins
+                ? this.state.details.skins[this.state.splash].name === "default"
+                  ? this.props.data.name
+                  : this.state.details.skins[this.state.splash].name
+                : null}
+            </div>
+            <button
+              className="champ-info-button"
+              onClick={e =>
+                this.state.details.skins
+                  ? this.state.splash < this.state.details.skins.length - 1
+                    ? this.changeSkin(1)
+                    : this.setState({ splash: 0 })
+                  : null
+              }
+              style={{ marginBottom: "20px" }}
+            >
+              {">"}
+            </button>
+          </div>
           {!this.state.loading ? (
             <div className="champ-info-data">
               <div className="champ-info-name">{this.props.data.name}</div>
@@ -215,7 +254,10 @@ class ChampInfo extends Component {
                   <div
                     dangerouslySetInnerHTML={{
                       __html:
-                        "PASSIVE – " + this.state.details.passive.description
+                        "PASSIVE – " +
+                        this.state.details.passive.description
+                          .split("size=")
+                          .join("")
                     }}
                   />
                 </ReactTooltip>
